@@ -83,4 +83,14 @@ public class UserDTO {
 		this.user_Date = user_Date;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserDTO [user_ID=").append(user_ID).append(", user_PWD=").append(user_PWD)
+				.append(", user_Nickname=").append(user_Nickname).append(", user_Home=").append(user_Home)
+				.append(", user_EXP=").append(user_EXP).append(", user_Profile=").append(user_Profile)
+				.append(", user_Date=").append(user_Date).append("]");
+		return builder.toString();
+	}
+
 }
