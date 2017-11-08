@@ -93,4 +93,58 @@ public class UserDTO {
 		return builder.toString();
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((user_Date == null) ? 0 : user_Date.hashCode());
+		result = prime * result + user_EXP;
+		result = prime * result + ((user_Home == null) ? 0 : user_Home.hashCode());
+		result = prime * result + user_ID;
+		result = prime * result + ((user_Nickname == null) ? 0 : user_Nickname.hashCode());
+		result = prime * result + ((user_PWD == null) ? 0 : user_PWD.hashCode());
+		result = prime * result + (user_Profile ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserDTO other = (UserDTO) obj;
+		if (user_Date == null) {
+			if (other.user_Date != null)
+				return false;
+		} else if (!user_Date.equals(other.user_Date))
+			return false;
+		if (user_EXP != other.user_EXP)
+			return false;
+		if (user_Home == null) {
+			if (other.user_Home != null)
+				return false;
+		} else if (!user_Home.equals(other.user_Home))
+			return false;
+		if (user_ID != other.user_ID)
+			return false;
+		if (user_Nickname == null) {
+			if (other.user_Nickname != null)
+				return false;
+		} else if (!user_Nickname.equals(other.user_Nickname))
+			return false;
+		if (user_PWD == null) {
+			if (other.user_PWD != null)
+				return false;
+		} else if (!user_PWD.equals(other.user_PWD))
+			return false;
+		if (user_Profile != other.user_Profile)
+			return false;
+		return true;
+	}
+
+	
+	
 }
