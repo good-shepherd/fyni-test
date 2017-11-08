@@ -1,0 +1,226 @@
+ -- 유저
+CREATE TABLE user (
+	user_ID       VARCHAR(255) NOT NULL, -- 유저아이디
+	user_PWD      VARCHAR(255) NOT NULL, -- 비번
+	user_Nickname VARCHAR(255) NOT NULL, -- 닉네임
+	user_EXP      INT          NULL     DEFAULT 0, -- 경험치
+	user_Profile  BOOLEAN      NULL,     -- 프로필공개?
+	user_Date     DATETIME     NULL     DEFAULT current_timestamp, -- 가입일
+	location_ID   INT          NULL      -- 위치아이디
+);
+
+-- 유저
+ALTER TABLE user
+	ADD CONSTRAINT PK_user -- 유저 기본키
+		PRIMARY KEY (
+			user_ID -- 유저아이디
+		);
+
+-- 이벤트
+CREATE TABLE event (
+	event_ID          INT          NOT NULL, -- 이벤트아이디
+	event_Title       VARCHAR(50)  NOT NULL, -- 제목
+	event_Content     VARCHAR(600) NULL,     -- 내용
+	event_Up          INT          NULL     DEFAULT 0, -- 추천
+	event_Down        INT          NULL     DEFAULT 0, -- 비추천
+	event_When        DATETIME     NULL,     -- 기간
+	event_WrittenWhen TIMESTAMP    NULL     DEFAULT now(), -- 작성시간
+	event_Picture     VARCHAR(200) NULL,     -- 사진
+	category_ID       INT          NOT NULL, -- 카테고리아이디
+	location_ID       INT          NOT NULL DEFAULT 0, -- 위치아이디
+	user_ID           VARCHAR(255) NOT NULL, -- 유저아이디
+	event_Hit         INT          NULL     DEFAULT 0 -- 조회수
+);
+
+-- 이벤트
+ALTER TABLE event
+	ADD CONSTRAINT PK_event -- 이벤트 기본키
+		PRIMARY KEY (
+			event_ID -- 이벤트아이디
+		);
+
+ALTER TABLE event
+	MODIFY COLUMN event_ID INT NOT NULL AUTO_INCREMENT;
+
+-- 코멘트
+CREATE TABLE comment (
+	comment_ID          INT          NOT NULL DEFAULT 0, -- 코멘트아이디
+	comment_Content     VARCHAR(300) NOT NULL, -- 내용
+	comment_Up          INT          NULL     DEFAULT 0, -- 추천
+	comment_Down        INT          NULL     DEFAULT 0, -- 비추천
+	comment_WrittenWhen TIMESTAMP    NULL     DEFAULT now(), -- 작성시간
+	event_ID            INT          NOT NULL, -- 이벤트아이디
+	user_ID             VARCHAR(255) NOT NULL  -- 유저아이디
+);
+
+-- 코멘트
+ALTER TABLE comment
+	ADD CONSTRAINT PK_comment -- 코멘트 기본키
+		PRIMARY KEY (
+			comment_ID -- 코멘트아이디
+		);
+
+ALTER TABLE comment
+	MODIFY COLUMN comment_ID INT NOT NULL AUTO_INCREMENT DEFAULT 0;
+
+-- 카테고리
+CREATE TABLE event_Category (
+	category_ID   INT         NOT NULL, -- 카테고리아이디
+	category_Name VARCHAR(50) NULL      -- 카테고리이름
+);
+
+-- 카테고리
+ALTER TABLE event_Category
+	ADD CONSTRAINT PK_event_Category -- 카테고리 기본키
+		PRIMARY KEY (
+			category_ID -- 카테고리아이디
+		);
+
+-- 위치
+CREATE TABLE location (
+	location_ID    INT         NOT NULL DEFAULT 0, -- 위치아이디
+	location_Title VARCHAR(50) NULL,     -- 상호
+	location_Point POINT       NOT NULL  -- 위치정보
+);
+
+-- 위치
+ALTER TABLE location
+	ADD CONSTRAINT PK_location -- 위치 기본키
+		PRIMARY KEY (
+			location_ID -- 위치아이디
+		);
+
+ALTER TABLE location
+	MODIFY COLUMN location_ID INT NOT NULL AUTO_INCREMENT DEFAULT 0;
+
+-- 이벤트신고
+CREATE TABLE event_Report (
+	event_ID        INT          NOT NULL, -- 이벤트아이디
+	user_ID         VARCHAR(255) NOT NULL, -- 유저아이디
+	report_Content  VARCHAR(90)  NULL,     -- 내용
+	report_Category VARCHAR(30)  NOT NULL  -- 신고_종류
+);
+
+-- 이벤트신고
+ALTER TABLE event_Report
+	ADD CONSTRAINT PK_event_Report -- 이벤트신고 기본키
+		PRIMARY KEY (
+			event_ID, -- 이벤트아이디
+			user_ID   -- 유저아이디
+		);
+
+-- 코멘트신고
+CREATE TABLE comment_Report (
+	event_ID         INT         NOT NULL, -- 이벤트아이디
+	comment_ID       INT         NOT NULL, -- 코멘트아이디
+	comment_Content  VARCHAR(90) NULL,     -- 내용
+	comment_Category VARCHAR(30) NULL      -- 신고_종류
+);
+
+-- 코멘트신고
+ALTER TABLE comment_Report
+	ADD CONSTRAINT PK_comment_Report -- 코멘트신고 기본키
+		PRIMARY KEY (
+			event_ID,   -- 이벤트아이디
+			comment_ID  -- 코멘트아이디
+		);
+
+-- 유저
+ALTER TABLE user
+	ADD CONSTRAINT FK_location_TO_user -- 위치 -> 유저
+		FOREIGN KEY (
+			location_ID -- 위치아이디
+		)
+		REFERENCES location ( -- 위치
+			location_ID -- 위치아이디
+		);
+
+-- 이벤트
+ALTER TABLE event
+	ADD CONSTRAINT FK_event_Category_TO_event -- 카테고리 -> 이벤트
+		FOREIGN KEY (
+			category_ID -- 카테고리아이디
+		)
+		REFERENCES event_Category ( -- 카테고리
+			category_ID -- 카테고리아이디
+		);
+
+-- 이벤트
+ALTER TABLE event
+	ADD CONSTRAINT FK_location_TO_event -- 위치 -> 이벤트
+		FOREIGN KEY (
+			location_ID -- 위치아이디
+		)
+		REFERENCES location ( -- 위치
+			location_ID -- 위치아이디
+		);
+
+-- 이벤트
+ALTER TABLE event
+	ADD CONSTRAINT FK_user_TO_event -- 유저 -> 이벤트
+		FOREIGN KEY (
+			user_ID -- 유저아이디
+		)
+		REFERENCES user ( -- 유저
+			user_ID -- 유저아이디
+		);
+
+-- 코멘트
+ALTER TABLE comment
+	ADD CONSTRAINT FK_event_TO_comment -- 이벤트 -> 코멘트
+		FOREIGN KEY (
+			event_ID -- 이벤트아이디
+		)
+		REFERENCES event ( -- 이벤트
+			event_ID -- 이벤트아이디
+		);
+
+-- 코멘트
+ALTER TABLE comment
+	ADD CONSTRAINT FK_user_TO_comment -- 유저 -> 코멘트
+		FOREIGN KEY (
+			user_ID -- 유저아이디
+		)
+		REFERENCES user ( -- 유저
+			user_ID -- 유저아이디
+		);
+
+-- 이벤트신고
+ALTER TABLE event_Report
+	ADD CONSTRAINT FK_event_TO_event_Report -- 이벤트 -> 이벤트신고
+		FOREIGN KEY (
+			event_ID -- 이벤트아이디
+		)
+		REFERENCES event ( -- 이벤트
+			event_ID -- 이벤트아이디
+		);
+
+-- 이벤트신고
+ALTER TABLE event_Report
+	ADD CONSTRAINT FK_user_TO_event_Report -- 유저 -> 이벤트신고
+		FOREIGN KEY (
+			user_ID -- 유저아이디
+		)
+		REFERENCES user ( -- 유저
+			user_ID -- 유저아이디
+		);
+
+-- 코멘트신고
+ALTER TABLE comment_Report
+	ADD CONSTRAINT FK_event_TO_comment_Report -- 이벤트 -> 코멘트신고
+		FOREIGN KEY (
+			event_ID -- 이벤트아이디
+		)
+		REFERENCES event ( -- 이벤트
+			event_ID -- 이벤트아이디
+		);
+
+-- 코멘트신고
+ALTER TABLE comment_Report
+	ADD CONSTRAINT FK_comment_TO_comment_Report -- 코멘트 -> 코멘트신고
+		FOREIGN KEY (
+			comment_ID -- 코멘트아이디
+		)
+		REFERENCES comment ( -- 코멘트
+			comment_ID -- 코멘트아이디
+		);
