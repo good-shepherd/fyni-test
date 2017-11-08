@@ -2,12 +2,16 @@ package com.fyni.event;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
 @Service
-public class EventServiceImpl implements EventService{
+public class EventServiceImpl implements EventService {
 
-	EventDAO dao;
+	@Inject
+	private EventDAO dao;
+
 	@Override
 	public int eventCreate(EventDTO event) throws Exception {
 		return dao.eventCreate(event);
