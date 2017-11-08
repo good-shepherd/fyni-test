@@ -3,7 +3,7 @@ package com.fyni.user;
 import java.util.Date;
 
 public class UserDTO {
-	private int user_ID;
+	private String user_ID;
 	private String user_PWD;
 	private String user_Nickname;
 	private Object user_Home;
@@ -11,27 +11,11 @@ public class UserDTO {
 	private boolean user_Profile;
 	private Date user_Date;
 
-	public UserDTO(int user_ID, String user_PWD, String user_Nickname, Object user_Home, int user_EXP,
-			boolean user_Profile, Date user_Date) {
-		super();
-		this.user_ID = user_ID;
-		this.user_PWD = user_PWD;
-		this.user_Nickname = user_Nickname;
-		this.user_Home = user_Home;
-		this.user_EXP = user_EXP;
-		this.user_Profile = user_Profile;
-		this.user_Date = user_Date;
-	}
-
-	public UserDTO() {
-		super();
-	}
-
-	public int getUser_ID() {
+	public String getUser_ID() {
 		return user_ID;
 	}
 
-	public void setUser_ID(int user_ID) {
+	public void setUser_ID(String user_ID) {
 		this.user_ID = user_ID;
 	}
 
@@ -83,6 +67,22 @@ public class UserDTO {
 		this.user_Date = user_Date;
 	}
 
+	public UserDTO(String user_ID, String user_PWD, String user_Nickname, Object user_Home, int user_EXP,
+			boolean user_Profile, Date user_Date) {
+		super();
+		this.user_ID = user_ID;
+		this.user_PWD = user_PWD;
+		this.user_Nickname = user_Nickname;
+		this.user_Home = user_Home;
+		this.user_EXP = user_EXP;
+		this.user_Profile = user_Profile;
+		this.user_Date = user_Date;
+	}
+
+	public UserDTO() {
+		super();
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -92,5 +92,5 @@ public class UserDTO {
 				.append(", user_Date=").append(user_Date).append("]");
 		return builder.toString();
 	}
-	
+
 }
