@@ -6,10 +6,26 @@ public class UserDTO {
 	private String user_ID;
 	private String user_PWD;
 	private String user_Nickname;
-	private Object user_Home;
+	private int location_ID;
 	private int user_EXP;
 	private boolean user_Profile;
 	private Date user_Date;
+
+	public UserDTO(String user_ID, String user_PWD, String user_Nickname, int location_ID, int user_EXP,
+			boolean user_Profile, Date user_Date) {
+		super();
+		this.user_ID = user_ID;
+		this.user_PWD = user_PWD;
+		this.user_Nickname = user_Nickname;
+		this.location_ID = location_ID;
+		this.user_EXP = user_EXP;
+		this.user_Profile = user_Profile;
+		this.user_Date = user_Date;
+	}
+
+	public UserDTO() {
+		super();
+	}
 
 	public String getUser_ID() {
 		return user_ID;
@@ -35,12 +51,12 @@ public class UserDTO {
 		this.user_Nickname = user_Nickname;
 	}
 
-	public Object getUser_Home() {
-		return user_Home;
+	public int getLocation_ID() {
+		return location_ID;
 	}
 
-	public void setUser_Home(Object user_Home) {
-		this.user_Home = user_Home;
+	public void setLocation_ID(int location_ID) {
+		this.location_ID = location_ID;
 	}
 
 	public int getUser_EXP() {
@@ -67,27 +83,11 @@ public class UserDTO {
 		this.user_Date = user_Date;
 	}
 
-	public UserDTO(String user_ID, String user_PWD, String user_Nickname, Object user_Home, int user_EXP,
-			boolean user_Profile, Date user_Date) {
-		super();
-		this.user_ID = user_ID;
-		this.user_PWD = user_PWD;
-		this.user_Nickname = user_Nickname;
-		this.user_Home = user_Home;
-		this.user_EXP = user_EXP;
-		this.user_Profile = user_Profile;
-		this.user_Date = user_Date;
-	}
-
-	public UserDTO() {
-		super();
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("UserDTO [user_ID=").append(user_ID).append(", user_PWD=").append(user_PWD)
-				.append(", user_Nickname=").append(user_Nickname).append(", user_Home=").append(user_Home)
+				.append(", user_Nickname=").append(user_Nickname).append(", location_ID=").append(location_ID)
 				.append(", user_EXP=").append(user_EXP).append(", user_Profile=").append(user_Profile)
 				.append(", user_Date=").append(user_Date).append("]");
 		return builder.toString();
