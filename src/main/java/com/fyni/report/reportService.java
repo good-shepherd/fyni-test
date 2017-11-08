@@ -2,7 +2,7 @@ package com.fyni.report;
 
 import java.util.List;
 
-public interface ReportDAO {
+public interface reportService {
 	public int eventReportCreate(EventReportDTO dto);
 	public int commentReportCreate(CommentReportDTO dto);
 	public List<EventReportDTO> eventReportReadByEvent(int event_ID);
