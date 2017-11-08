@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 //event_Down        NUMERIC      NULL,     -- 비추천
 //event_When        DATETIME     NULL,     -- 기간
 //event_WrittenWhen TIMESTAMP    NULL,     -- 작성시간
-//event_Picture     MEDIUMBLOB   NULL,     -- 사진
+//event_Picture     String   NULL,     -- 사진
 //category_ID       NUMERIC      NOT NULL, -- 카테고리아이디
 //location_ID       INT          NOT NULL, -- 위치아이디
 //user_ID           VARCHAR(255) NOT NULL  -- 유저아이디
@@ -24,7 +24,7 @@ public class EventDTO {
 	private int event_Down;
 	private Date event_When;
 	private Timestamp event_WrittenWhen;
-	private Blob event_Picture;
+	private String event_Picture;
 	private int category_ID;
 	private int location_ID;
 	private String user_ID;
@@ -86,14 +86,6 @@ public class EventDTO {
 		this.event_WrittenWhen = event_WrittenWhen;
 	}
 
-	public Blob getEvent_Picture() {
-		return event_Picture;
-	}
-
-	public void setEvent_Picture(Blob event_Picture) {
-		this.event_Picture = event_Picture;
-	}
-
 	public int getCategory_ID() {
 		return category_ID;
 	}
@@ -121,9 +113,24 @@ public class EventDTO {
 	public EventDTO() {
 		super();
 	}
+	public int getEvent_Hit() {
+		return event_Hit;
+	}
+
+	public void setEvent_Hit(int event_Hit) {
+		this.event_Hit = event_Hit;
+	}
+
+	public String getEvent_Picture() {
+		return event_Picture;
+	}
+
+	public void setEvent_Picture(String event_Picture) {
+		this.event_Picture = event_Picture;
+	}
 
 	public EventDTO(int event_ID, String event_Title, String event_Content, int event_Up, int event_Down,
-			Date event_When, Timestamp event_WrittenWhen, Blob event_Picture, int category_ID, int location_ID,
+			Date event_When, Timestamp event_WrittenWhen, String event_Picture, int category_ID, int location_ID,
 			String user_ID, int event_Hit) {
 		super();
 		this.event_ID = event_ID;
@@ -138,27 +145,6 @@ public class EventDTO {
 		this.location_ID = location_ID;
 		this.user_ID = user_ID;
 		this.event_Hit = event_Hit;
-	}
-
-	public int getEvent_Hit() {
-		return event_Hit;
-	}
-
-	public void setEvent_Hit(int event_Hit) {
-		this.event_Hit = event_Hit;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("EventDTO [event_ID=").append(event_ID).append(", event_Title=").append(event_Title)
-				.append(", event_Content=").append(event_Content).append(", event_Up=").append(event_Up)
-				.append(", event_Down=").append(event_Down).append(", event_When=").append(event_When)
-				.append(", event_WrittenWhen=").append(event_WrittenWhen).append(", event_Picture=")
-				.append(event_Picture).append(", category_ID=").append(category_ID).append(", location_ID=")
-				.append(location_ID).append(", user_ID=").append(user_ID).append(", event_Hit=").append(event_Hit)
-				.append("]");
-		return builder.toString();
 	}
 
 
