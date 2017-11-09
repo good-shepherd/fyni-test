@@ -59,18 +59,12 @@ public class DAOTest {
  
 	
 	@Autowired
-	DataSource dataSource;
-	
-	
-	@Autowired
 	@Qualifier("userDao")
 	private UserDAO dao;
 	
 	@Test
 	public void testRead() throws Exception{
 		System.out.println(dao.userRead("CDH"));
-		System.out.println(dataSource);
-		System.out.println(dao);
 	}
 >>>>>>> master
 }
