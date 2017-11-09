@@ -14,7 +14,7 @@
 <select id="eventReportReadByEvent">
 	select * from event_Report where event_ID = #{event_ID}
 </select>
-<select id="eventReportReadByEvent">
+<select id="eventReportReadByUser">
 	select * from event_Report where user_ID = #{user_ID}
 </select>
 <select id="commentReportReadByEvent">

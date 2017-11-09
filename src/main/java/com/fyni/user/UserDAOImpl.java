@@ -5,13 +5,16 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("userDao")
 public class UserDAOImpl implements UserDAO {
 
 	@Inject
 	private SqlSession session;
+	
+	@Autowired
 	private static String namespace = "com.fyni.mapper.userMapper";
 
 	@Override
