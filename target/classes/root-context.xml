@@ -17,13 +17,8 @@
 	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-<<<<<<< HEAD
-		<property name ="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:log4jdbc:mysql://70.12.110.62:3306/fyni" />
-=======
 		<property name ="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://70.12.110.62:3306/fyni"/>
->>>>>>> master
 		<property name="username" value="fyni" />
 		<property name="password" value="1234" />
 	</bean>

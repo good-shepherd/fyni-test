@@ -27,15 +27,17 @@
 		event_Hit = #{event_Hit}
 		where event_ID = #{event_ID}
 	</update>
-	<select id="eventRead" parameterType="int">
+	<select id="eventRead" resultType="com.fyni.event.eventDTO">
 		select * from event where event_ID = #{event_ID}
 	</select>
-	<select id="eventReadAll">
+	<select id="eventReadAll" resultType="com.fyni.event.eventDTO">>
 		select * from event
 	</select>
-	<select id="eventUserOwn" parameterType="String">
+	<select id="eventUserOwn" resultType="com.fyni.event.eventDTO">>
+	<![CDATA[
 		select * from event where user_ID = #{user_ID}
 	</select>
+	]]>
 	<select id="eventInCircle">
 		select *,(6371*acos(cos(radians(#{lat}))*cos(radians(lat))*cos(radians(lon)
 		-radians(#{lon}))+sin(radians(#{lat}))*sin(radians(lat))))
