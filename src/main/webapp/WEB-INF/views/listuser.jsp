@@ -5,12 +5,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+});
+
+
+</script>
 </head>
 <body>
 	<h1>test page</h1>
+	
 	<div>
 		<div>
-			유저아이디:<input type='text' name='user_ID' id='user_ID'>
+			유저아이디:<input type='text' name='user_ID' id='user_ID' value = ${user_ID }>
 		</div>
 		<div>
 			유저비번:<input type='text' name='user_PWD' id='user_PWD'>

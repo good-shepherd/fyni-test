@@ -16,13 +16,13 @@ import com.fyni.user.UserDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
 @WebAppConfiguration
 public class DAOTest {
 
 	@Inject
 	private DataSource ds;
-	
+
 	@Inject
 	private UserDAO dao;
 
