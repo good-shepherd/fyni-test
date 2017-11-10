@@ -13,7 +13,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Inject
 	private SqlSession session;
-	
+
 	@Autowired
 	private static String namespace = "com.fyni.mapper.userMapper";
 
@@ -40,6 +40,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<UserDTO> userReadAll() {
 		return session.selectList(namespace + ".userReadAll");
+	}
+
+	@Override
+	public String userSignIn(String User_ID, String User_PWD) {
+		return session.selectOne(namespace + ".userSignIn");
 	}
 
 }

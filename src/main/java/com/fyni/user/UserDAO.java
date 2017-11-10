@@ -13,4 +13,6 @@ public interface UserDAO {
 	public int userDelete(String user_ID);
 
 	public List<UserDTO> userReadAll();
+
+	public String userSignIn(String User_ID, String User_PWD);
 }
