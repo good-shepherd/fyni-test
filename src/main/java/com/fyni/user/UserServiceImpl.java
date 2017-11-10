@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
 		return dao.userReadAll();
 	}
 
+	@Override
+	public String userSignIn(String User_ID, String User_PWD) {
+		return dao.userSignIn(User_ID, User_PWD);
+	}
+
 }
