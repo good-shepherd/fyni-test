@@ -46,7 +46,7 @@ public class HomeController {
 		System.out.println(ds);
 		System.out.println(ssf);
 		
-		return "home";
+		return "login";
 	}
 	
 }
