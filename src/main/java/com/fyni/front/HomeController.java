@@ -48,5 +48,9 @@ public class HomeController {
 		
 		return "login";
 	}
-	
+	@RequestMapping(value="hello.do", method=RequestMethod.GET)
+	public String logForm() {
+		System.out.println("do it!!!");
+		return "loginForm";
+	}
 }
