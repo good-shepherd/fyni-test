@@ -6,10 +6,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<script>
+$(document).ready(function(){
+	$('#loginbtn').click( function() {
+		$('#mod').addClass('invis');
+		$('#ident').addClass('vis');
+	});
+});
+
+</script>
+<style>
+.vis{
+	display: block;
+}
+.invis{
+	display: none;  
+}
+</style>
 </head>
 <body>
 	<div class="navbar navbar-static-top navbar-inverse">
@@ -20,11 +39,12 @@
 			</form>
 			<ul class="nav pull-right">
 				<li>
-					<button type="button" class="btn btn-primary" data-toggle="modal"
+					<button type="button" id = "mod" class="btn btn-primary" data-toggle="modal"
 						data-target="#myModal">Open modal</button>
 				</li>
-				<li><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
+				<li>
+					<button id = "ident" class = "btn btn-primary">Log off</button>
+				</li>
 			</ul>
 		</div>
 		<div class="modal fade" id="myModal">
@@ -36,8 +56,14 @@
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 					<div class="modal-body">
-						<iframe frameborder="0" name="logForm" scrolling="no" src="hello.do" style="min-height: 443px;" target="_parent">
-						</iframe>
+						<form method="post" action="login.do" id="loginForm">
+							<label class="form-group" for="user_ID">ID : </label> <input
+								type="text" class="form-control" name="user_ID"> <label
+								class="form-group" for="user_PWD">Password : </label> <input
+								type="password" class="form-control" name="user_PWD">
+							<!-- 	<input type = "submit" class = "btn btn-success" value = "LOGIN"> -->
+							<button type="submit" id="loginbtn" name="loginbtn">LOGIN</button>
+						</form>
 					</div>
 					<!-- Modal footer -->
 					<div class="modal-footer">
@@ -48,6 +74,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

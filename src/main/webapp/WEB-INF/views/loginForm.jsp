@@ -13,14 +13,16 @@
 </head>
 <body>
 <div class="container">
-<form method = "post" action ="login.do" id = "loginForm" >
-	<label class = "form-group" for="userid">ID : </label>
-		<input type = "text" class = "form-control" id = "userid" >
-	<label class = "form-group" for="userpwd">Password : </label>
-		<input type = "password" class = "form-control" id = "userpwd" >
-	<input type = "submit" class = "btn btn-success" value = "LOGIN">
-</form>
 
+
+<script>
+var p = document.getElementById("loginbtn");
+var modal = document.getElementById("mymodal");
+p.onclick = function(event){
+		modal.style.display = "none";
+}
+
+</script>
 </div>
 </body>
 </html>
