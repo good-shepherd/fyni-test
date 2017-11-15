@@ -1,6 +1,8 @@
 package com.fyni.user;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -43,8 +45,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public String userSignIn(String User_ID, String User_PWD) {
-		return session.selectOne(namespace + ".userSignIn");
+	public LoginDTO userSignIn(String user_ID, String user_PWD) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("user_ID",user_ID);
+		map.put("user_PWD", user_PWD);
+		return session.selectOne(namespace + ".userSignIn", map);
 	}
 
 }

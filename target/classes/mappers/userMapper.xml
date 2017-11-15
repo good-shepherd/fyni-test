@@ -25,10 +25,10 @@
 		where user_ID = #{user_ID}
 	</select>
 
-	<select id="userSignIn" resultType="string">
-		select user_ID
+	<select id="userSignIn" resultType="com.fyni.user.LoginDTO">
+		select user_ID,user_PWD
 		from user
-		where user_ID = #{user_ID} and #{user_PWD}
+		where user_ID = #{user_ID} and user_PWD = #{user_PWD}
 	</select>
 
 	<update id="userUpdate">

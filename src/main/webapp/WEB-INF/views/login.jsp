@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -13,26 +14,44 @@
 <script src="js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script>
-$(document).ready(function(){
-	$('#loginbtn').click(function() {
-		$('#a').addClass('invis');
-		$('#b').addClass('vis');
+	$(document).ready(function() {
+		$('#logbtn').click(function() {
+			var userid = $('#user_ID').val();
+			var userpwd = $('#user_PWD').val();
+			$.ajax({
+				url : 'login.do',
+				type : 'POST',
+				data : {
+					'user_ID' : userid,
+					'user_PWD' : userpwd
+				},
+				success : function(a, b, c) {
+					if (a == "fail") {
+						alert("login Failed!")
+						$('user_ID').val("");
+						$('user_PWD').val("");
+					} else {
+						$('#myModal').modal('hide');
+						$('#mod').addClass('invis');
+						$('#ident').removeClass('invis');
+						$('#ident').html(a);
+					}
+				}
+			});
+		});
 	});
-});
 </script>
 <style>
-.vis{
-	display: block;
+.vis {
+	display: inline;
 }
-.invis{
-	display: none;  
+
+.invis {
+	display: none;
 }
 </style>
 </head>
 <body>
-	<button id ="a" class = "btn btn-primary">aaaa</button>
-	<button id ="b" class = "btn btn-primary">bbbb</button>
-		
 	<div class="navbar navbar-static-top navbar-inverse">
 		<div class="brand">FYNI</div>
 		<div class="navbar-inner">
@@ -40,13 +59,22 @@ $(document).ready(function(){
 				<input type="text" class="search-query" placeholder="Search">
 			</form>
 			<ul class="nav pull-right">
+				<c:if test="${user_ID == null}">
+					<li>
+						<button type="button" id="mod" class="btn btn-primary"
+							data-toggle="modal" data-target="#myModal">Log In</button>
+					</li>
+				</c:if>
 				<li>
-					<button type="button" id = "mod" class="btn btn-primary" data-toggle="modal"
-						data-target="#myModal">Open modal</button>
+					<button id="ident" class="btn btn-primary invis">${user_ID }님</button>
 				</li>
-				<li>
-					<button id = "ident" class = "btn btn-primary">Log off</button>
-				</li>
+				<c:if test="${user_ID != null}">
+					<li>
+						<button id="mod" class="btn btn-primary">${user_ID }님</button>
+					</li>
+				</c:if>
+
+
 			</ul>
 		</div>
 		<div class="modal fade" id="myModal">
@@ -58,19 +86,14 @@ $(document).ready(function(){
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 					<div class="modal-body">
-						<form method="post" action="login.do" id="loginForm">
-							<label class="form-group" for="user_ID">ID : </label> <input
-								type="text" class="form-control" name="user_ID"> <label
-								class="form-group" for="user_PWD">Password : </label> <input
-								type="password" class="form-control" name="user_PWD">
-							<!-- 	<input type = "submit" class = "btn btn-success" value = "LOGIN"> -->
-							<button type="submit" id="loginbtn" name="loginbtn">LOGIN</button>
-						</form>
+						<label class="form-group" for="user_ID">ID : </label> <input
+							type="text" class="form-control" id="user_ID"> <label
+							class="form-group" for="user_PWD">Password : </label> <input
+							type="password" class="form-control" id="user_PWD">
 					</div>
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-secondary" id="logbtn">LOG</button>
 					</div>
 				</div>
 			</div>

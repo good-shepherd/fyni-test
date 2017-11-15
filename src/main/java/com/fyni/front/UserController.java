@@ -41,16 +41,16 @@ public class UserController {
 		return "signup";
 	}
 
-	@RequestMapping(value = "/signin", method = RequestMethod.POST)
-	public ModelAndView signIn(String user_ID, String user_PWD, ModelAndView mav) {
-		String id = service.userSignIn(user_ID, user_PWD);
-
-		if (id != null) {
-		} else {
-
-		}
-
-		return mav;
-	}
+//	@RequestMapping(value = "/signin", method = RequestMethod.POST)
+//	public ModelAndView signIn(String user_ID, String user_PWD, ModelAndView mav) {
+//		String id = service.userSignIn(user_ID, user_PWD);
+//
+//		if (id != null) {
+//		} else {
+//
+//		}
+//
+//		return mav;
+//	}
 
 }

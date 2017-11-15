@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Handles requests for the application home page.
@@ -28,7 +29,6 @@ public class HomeController {
 	
 	@Autowired
 	SqlSessionFactory ssf;
-	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -50,13 +50,7 @@ public class HomeController {
 		return "login";
 	}
 	
-	
-	@RequestMapping(value="login.do", method=RequestMethod.POST)
-	public String logForm(@RequestParam("user_ID") String user_ID, @RequestParam("user_PWD") String user_PWD) {
-		System.out.println("아이디는 : " + user_ID + " 비밀번호는" + user_PWD);
-		return "login";
-	}
-	
+
 	@RequestMapping(value="hello.do", method=RequestMethod.GET)
 	public String login() {
 		return "loginForm";
