@@ -14,12 +14,11 @@
 <title>Insert title here</title>
 <script>
 $(document).ready(function(){
-	$('#loginbtn').click( function() {
-		$('#mod').addClass('invis');
-		$('#ident').addClass('vis');
+	$('#loginbtn').click(function() {
+		$('#a').addClass('invis');
+		$('#b').addClass('vis');
 	});
 });
-
 </script>
 <style>
 .vis{
@@ -31,6 +30,9 @@ $(document).ready(function(){
 </style>
 </head>
 <body>
+	<button id ="a" class = "btn btn-primary">aaaa</button>
+	<button id ="b" class = "btn btn-primary">bbbb</button>
+		
 	<div class="navbar navbar-static-top navbar-inverse">
 		<div class="brand">FYNI</div>
 		<div class="navbar-inner">
